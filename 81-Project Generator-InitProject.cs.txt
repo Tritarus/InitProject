@@ -1,0 +1,38 @@
+using UnityEngine;
+using UnityEditor;
+using System.IO;
+
+[InitializeOnLoad]
+public class InitProject
+{
+    static InitProject()
+    {
+        DirectoryInfo projectDirectory = Directory.GetParent(Application.dataPath);
+        string projectName = "_" + projectDirectory.Name;
+        string projectPath = Application.dataPath + "/" + projectName;
+
+        if (!Directory.Exists(projectPath))
+        {
+            AssetDatabase.CreateFolder("Assets", projectName);
+            AssetDatabase.CreateFolder("Assets/" + projectName, "Editor");
+            AssetDatabase.CreateFolder("Assets/" + projectName, "Graphics");
+            AssetDatabase.CreateFolder("Assets/" + projectName, "Prefabs");
+            AssetDatabase.CreateFolder("Assets/" + projectName, "Scenes");
+            AssetDatabase.CreateFolder("Assets/" + projectName, "Scripts");
+
+            string scriptsPath = projectPath + "/Scripts";
+            string editorPath = projectPath + "/Editor";
+            string unityAppPath = Path.GetDirectoryName(EditorApplication.applicationPath);
+
+            string scriptsTemplatePath = unityAppPath + "/Data/Resources/ScriptTemplates/";
+            WriteTemplate(scriptsTemplatePath + "82a-Editor__C# Inherited Script-DualBehaviour.cs.txt", scriptsPath + "/DualBehaviour.cs");
+
+            AssetDatabase.Refresh();
+        }
+    }
+
+    private static void WriteTemplate(string _templatePath, string _templateDest)
+    {
+        File.Copy(_templatePath, _templateDest);
+    }
+}

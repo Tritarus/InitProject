@@ -1,0 +1,46 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class #SCRIPTNAME# : DualBehaviour
+{
+	#region Public Members
+
+	#endregion
+
+	#region Public Function
+
+	#endregion
+
+	#region System
+
+	protected override void Awake() 
+	{
+		#NOTRIM#
+	}
+
+	private void Start() 
+	{
+		#NOTRIM#
+	}
+	
+	private void Update()
+	{
+		#NOTRIM#
+	}
+
+	private void FixedUpdate()
+	{
+		#NOTRIM#
+	}
+
+	#endregion
+
+	#region Tools Debug And Utility
+
+	#endregion
+
+	#region Private an Protected Members
+
+	#endregion
+}
